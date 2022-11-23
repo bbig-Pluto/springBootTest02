@@ -6,8 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Can page</title>
+
 </head>
 <body>
     <h1>hello buddy</h1>
+    <button type="button" id="nextPageBtn">다음 페이지</button>
+    <script>
+        window.onload = function() {
+            document.querySelector("#nextPageBtn").addEventListener("click", function() {
+                console.log("clicked");
+                window.location = "/entrance/next";
+            })
+        }
+    </script>
 </body>
 </html>

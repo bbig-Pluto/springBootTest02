@@ -1,6 +1,7 @@
 package aws.spring.testing;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,22 +9,24 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-@RestController
+@Controller
 public class AppController {
 
     @RequestMapping(value="/entrance", method= RequestMethod.GET)
-    public void entrance(
-            HttpServletResponse response
-    ) throws Exception {
+    public String entrance(
+            HttpServletResponse response,
+            Model model
+    ) {
+        System.out.println("/entrance route");
+        return "/index.html";
+    }
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
-        out.println("<html>");
-        out.println("<body>");
-        out.println("<h1>Method of entrance</h1>");
-        out.println("</body>");
-        out.println("</html>");
-
+    @RequestMapping(value="/entrance/next", method = RequestMethod.GET)
+    public String nextPage(
+            Model model
+    ) {
+        System.out.println("/entrance/next route");
+        model.addAttribute("binding", "바인딩 데이터");
+        return "/nextpage.html";
     }
 }
